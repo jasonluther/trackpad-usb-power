@@ -1,0 +1,10 @@
+# Hooks for prek (https://github.com/j178/prek) or pre-commit: `prek install` sets up all three stages.
+# The denylist is read from outside the repository (see kilotronic/data-leak-check's README).
+default_install_hook_types: [pre-commit, commit-msg, pre-push]
+repos:
+  - repo: https://github.com/kilotronic/data-leak-check
+    rev: f1da8a7ce76bfaabd70ea815d9417fb691e95799  # v1.1.0
+    hooks:
+      - id: data-leak-check            # pre-commit: staged changes and the commit's identity
+      - id: data-leak-check-commit-msg # commit-msg: the message
+      - id: data-leak-check-pre-push   # pre-push: the commits being pushed

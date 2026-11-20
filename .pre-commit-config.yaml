@@ -2,9 +2,19 @@
 # The denylist is read from outside the repository (see kilotronic/data-leak-check's README).
 default_install_hook_types: [pre-commit, commit-msg, pre-push]
 repos:
+  - repo: https://github.com/kilotronic/git-identity
+    rev: 76223f8d531904185d4bd46f66c65849cf0133f7  # v2.2.0
+    hooks:
+      - id: git-identity               # pre-commit: the identity git will stamp
+        fail_fast: true
   - repo: https://github.com/kilotronic/data-leak-check
     rev: f1da8a7ce76bfaabd70ea815d9417fb691e95799  # v1.1.0
     hooks:
       - id: data-leak-check            # pre-commit: staged changes and the commit's identity
       - id: data-leak-check-commit-msg # commit-msg: the message
       - id: data-leak-check-pre-push   # pre-push: the commits being pushed
+  - repo: https://github.com/kilotronic/secret-scan
+    rev: 006556b813fd5054d7da8575d3928c5ad3583535  # v1.1.0
+    hooks:
+      - id: secret-scan                # pre-commit: the staged changes (gitleaks)
+      - id: secret-scan-push           # pre-push: the commits being pushed (gitleaks)

@@ -3,7 +3,7 @@
 default_install_hook_types: [pre-commit, commit-msg, pre-push]
 repos:
   - repo: https://github.com/kilotronic/git-identity
-    rev: 76223f8d531904185d4bd46f66c65849cf0133f7  # v2.2.0
+    rev: 5a7b91c3194870cf535ba8c37a6c93b19b5a933b  # v2.3.1
     hooks:
       - id: git-identity               # pre-commit: the identity git will stamp
         fail_fast: true
@@ -14,7 +14,7 @@ repos:
       - id: data-leak-check-commit-msg # commit-msg: the message
       - id: data-leak-check-pre-push   # pre-push: the commits being pushed
   - repo: https://github.com/kilotronic/secret-scan
-    rev: 006556b813fd5054d7da8575d3928c5ad3583535  # v1.1.0
+    rev: 2665d6f2f0260d3ae0defbedcce27fc63ad6a168  # v1.2.1
     hooks:
       - id: secret-scan                # pre-commit: the staged changes (gitleaks)
       - id: secret-scan-push           # pre-push: the commits being pushed (gitleaks)

@@ -8,17 +8,17 @@ outer_slot_d = 17.75; // Outer diameter of the battery compartment
 outer_slot_l = 130; // Width of the trackpad
 
 module inner_slot() {
-  translate([-1,0,0]) 
-    rotate(a=90, v=[0,1,0]) 
+  translate([-1,0,0])
+    rotate(a=90, v=[0,1,0])
       cylinder(d=inner_slot_d, h=inner_slot_l);
 }
 module outer_slot() {
-  rotate(a=90, v=[0,1,0]) 
+  rotate(a=90, v=[0,1,0])
     cylinder(d=outer_slot_d, h=outer_slot_l, $fn=50);
 }
 module terminal() {
-  color("White") translate([inner_slot_l,0,0]) 
-    rotate(a=90, v=[0,1,0]) 
+  color("White") translate([inner_slot_l,0,0])
+    rotate(a=90, v=[0,1,0])
       cylinder(d=6, h=terminal_h, $fn=50);
 }
 module slot() {
@@ -62,8 +62,8 @@ module frame_cutout_for_board_bottom() {
     -board_h/2-board_h*0.1
   ])
     cube([
-      board_l*board_support_ratio, 
-      board_w*board_support_ratio, 
+      board_l*board_support_ratio,
+      board_w*board_support_ratio,
       board_h*1.1
     ]);
 }
@@ -81,17 +81,17 @@ frame_cutout_for_board_bottom();
   }
 }
 
-// The teeth need to hold the frame in the threads and force the 
+// The teeth need to hold the frame in the threads and force the
 // negative terminal to make contact
 frame_teeth_cutout_w = inner_slot_d/2*1.3;
 frame_teeth_cutout_h = inner_slot_d/2;
 module frame_teeth(side) {
   rotate(a=180*side, v=[0,0,1])
-    translate([0,-inner_slot_d*1.1/2,-frame_h/2]) 
+    translate([0,-inner_slot_d*1.1/2,-frame_h/2])
       cube([1, inner_slot_d*1.1/2, frame_h]);
 }
 module frame_teeth_cutout() {
-  translate([-1.1,-frame_teeth_cutout_w/2,-frame_teeth_cutout_h/2]) 
+  translate([-1.1,-frame_teeth_cutout_w/2,-frame_teeth_cutout_h/2])
     cube([10,frame_teeth_cutout_w,frame_teeth_cutout_h]);
 }
 module safety_tab() {
@@ -137,7 +137,6 @@ spring_d = 1.25;
 spring_cutout_w = 10;
 spring_cutout_h = inner_slot_d/2;
 module spring_cutout() {
-  translate([inner_slot_l-10,-spring_d/2,0]) 
+  translate([inner_slot_l-10,-spring_d/2,0])
     cube([spring_cutout_w,spring_d,spring_cutout_h]);
 }
-

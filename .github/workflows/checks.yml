@@ -31,11 +31,25 @@ jobs:
           persist-credentials: false
       - uses: kilotronic/secret-scan@2665d6f2f0260d3ae0defbedcce27fc63ad6a168 # v1.2.1
 
-  # Refuse placeholder and machine-default author identities in this event's commits.
+  # Refuse placeholder and machine-default author identities, and Claude-Session trailers, in this
+  # event's commits.
   git-identity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: kilotronic/git-identity@5a7b91c3194870cf535ba8c37a6c93b19b5a933b # v2.3.1
+      - uses: kilotronic/git-identity@b0d54e809d81cabf61d357cbe519a9b9263b17cb # v2.4.0
+
+  # The shared format and lint checks from .pre-commit-config.yaml (kilotronic/lint's bundle, workflow
+  # safety, pins). The identity, secret and private-data hooks are skipped here: the jobs above run them.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: prek run --all-files
+        env:
+          SKIP: git-identity,commit-subject,session-trailer,secret-scan,secret-scan-push,data-leak-check,data-leak-check-commit-msg,data-leak-check-pre-push
+        run: pipx run prek==0.5.11 run --all-files --show-diff-on-failure

@@ -20,7 +20,7 @@ repos:
       - id: secret-scan # pre-commit: the staged changes (gitleaks)
       - id: secret-scan-push # pre-push: the commits being pushed (gitleaks)
   - repo: https://github.com/kilotronic/lint
-    rev: b5343bfa69d890919c8774733da372d13d23d6d3 # frozen: v1.3.1
+    rev: 56a43d45e7b4479bba97c79404a4dc7671bd9796 # frozen: v1.3.2
     hooks:
       - id: ruff-format
       - id: prettier

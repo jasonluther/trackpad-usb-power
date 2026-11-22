@@ -3,7 +3,7 @@
 default_install_hook_types: [pre-commit, commit-msg, pre-push]
 repos:
   - repo: https://github.com/kilotronic/checks
-    rev: a6e8917fddb679077a2e8a427598ff1fd7a160ef # frozen: v1.0.0
+    rev: 1bc3a9cd7c8875e77799faae6774f6f8eec50207 # frozen: v1.0.1
     hooks:
       - id: git-identity # pre-commit: the identity git will stamp
         fail_fast: true

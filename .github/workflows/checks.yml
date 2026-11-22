@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: kilotronic/data-leak-check@f1da8a7ce76bfaabd70ea815d9417fb691e95799 # v1.1.0
+      - uses: kilotronic/checks/data-leak-check@a6e8917fddb679077a2e8a427598ff1fd7a160ef # v1.0.0
         with:
           denylist: ${{ secrets.DATA_LEAK_DENYLIST }}
 
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: kilotronic/secret-scan@2665d6f2f0260d3ae0defbedcce27fc63ad6a168 # v1.2.1
+      - uses: kilotronic/checks/secret-scan@a6e8917fddb679077a2e8a427598ff1fd7a160ef # v1.0.0
 
   # Refuse placeholder and machine-default author identities, and Claude-Session trailers, in this
   # event's commits.
@@ -39,9 +39,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: kilotronic/git-identity@b0d54e809d81cabf61d357cbe519a9b9263b17cb # v2.4.0
+      - uses: kilotronic/checks/git-identity@a6e8917fddb679077a2e8a427598ff1fd7a160ef # v1.0.0
 
-  # The shared format and lint checks from .pre-commit-config.yaml (kilotronic/lint's bundle, workflow
+  # The shared format and lint checks from .pre-commit-config.yaml (kilotronic/checks/lint's bundle, workflow
   # safety, pins). The identity, secret and private-data hooks are skipped here: the jobs above run them.
   lint:
     runs-on: ubuntu-latest

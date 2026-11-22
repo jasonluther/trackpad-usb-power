@@ -1,27 +1,18 @@
 # Hooks for prek (https://github.com/j178/prek) or pre-commit: `prek install` sets up all three stages.
-# The denylist is read from outside the repository (see kilotronic/data-leak-check's README).
+# The denylist is read from outside the repository (see kilotronic/checks/data-leak-check's README).
 default_install_hook_types: [pre-commit, commit-msg, pre-push]
 repos:
-  - repo: https://github.com/kilotronic/git-identity
-    rev: b0d54e809d81cabf61d357cbe519a9b9263b17cb # frozen: v2.4.0
+  - repo: https://github.com/kilotronic/checks
+    rev: a6e8917fddb679077a2e8a427598ff1fd7a160ef # frozen: v1.0.0
     hooks:
       - id: git-identity # pre-commit: the identity git will stamp
         fail_fast: true
       - id: session-trailer # commit-msg: no Claude-Session trailer (public repo)
-  - repo: https://github.com/kilotronic/data-leak-check
-    rev: f1da8a7ce76bfaabd70ea815d9417fb691e95799 # frozen: v1.1.0
-    hooks:
       - id: data-leak-check # pre-commit: staged changes and the commit's identity
       - id: data-leak-check-commit-msg # commit-msg: the message
       - id: data-leak-check-pre-push # pre-push: the commits being pushed
-  - repo: https://github.com/kilotronic/secret-scan
-    rev: 2665d6f2f0260d3ae0defbedcce27fc63ad6a168 # frozen: v1.2.1
-    hooks:
       - id: secret-scan # pre-commit: the staged changes (gitleaks)
       - id: secret-scan-push # pre-push: the commits being pushed (gitleaks)
-  - repo: https://github.com/kilotronic/lint
-    rev: 56a43d45e7b4479bba97c79404a4dc7671bd9796 # frozen: v1.3.2
-    hooks:
       - id: ruff-format
       - id: prettier
       - id: shfmt

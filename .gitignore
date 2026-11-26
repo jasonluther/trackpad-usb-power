@@ -1,0 +1,7 @@
+# Secrets: never commit local environment files
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
